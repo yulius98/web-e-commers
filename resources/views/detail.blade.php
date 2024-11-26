@@ -1,63 +1,75 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
-    
-    <!-- resources/views/detail.blade.php -->
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Product Image Section -->
-            <div class="rounded-lg overflow-hidden shadow-lg border bg-white">
-                <div class="flex justify-center items-center p-4">
-                    <img src="{{ $product->img ? asset($product->img) : asset('img/product1.jpg') }}" 
-                         alt="{{ $product->produk }}" 
-                         class="w-full h-auto max-w-lg object-contain"
-                         onerror="this.src='{{ asset('img/product1.jpg') }}'">
-                </div>
-            </div>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	
+	<div class="bg-gray-50 min-h-screen">
+		<!-- Breadcrumb -->
+		<div class="container mx-auto px-4 py-4">
+			<nav class="text-gray-500 text-sm">
+				<a href="/" class="hover:text-lime-600">Home</a>
+				<span class="mx-2">/</span>
+				<span class="text-gray-800">{{ $product->produk }}</span>
+			</nav>
+		</div>
 
-            <!-- Product Details Section -->
-            <div class="space-y-6 bg-white rounded-lg shadow-lg p-6 border">
-                <!-- Product Title -->
-                <h1 class="text-4xl font-extrabold text-black-600">{{ $product->produk }}</h1>
-                
-                <!-- Price -->
-                <div class="text-3xl font-semibold text-gray-500">
-                    Rp {{ number_format((float)$product->harga, 0, ',', '.') }}
-                </div>
+		<!-- Main Content -->
+		<div class="container mx-auto px-4 py-8">
+			<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 p-8">
+					<!-- Product Image Section -->
+					<div class="rounded-xl overflow-hidden bg-gray-50">
+						<div class="flex justify-center items-center p-4">
+							<img src="{{ $product->img ? asset($product->img) : asset('img/product1.jpg') }}" 
+								 alt="{{ $product->produk }}" 
+								 class="w-full h-auto max-w-lg object-contain transform transition hover:scale-105"
+								 onerror="this.src='{{ asset('img/product1.jpg') }}'">
+						</div>
+					</div>
 
-                <!-- Product Description -->
-                <div class="text-gray-600">
-                    <p>{{ $product->description }}</p>
-                </div>
+					<!-- Product Details Section -->
+					<div class="space-y-6">
+						<!-- Product Title -->
+						<h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $product->produk }}</h1>
+						
+						<!-- Category Badge -->
+						<div class="inline-block">
+							<span class="px-4 py-1.5 bg-lime-100 text-lime-700 rounded-full text-sm font-medium">
+								{{ $product->kategori }}
+							</span>
+						</div>
 
-                <!-- Stock & Category -->
-                <div class="border-t border-b py-4 flex justify-between items-center">
-                    <p class="text-lg font-semibold">Stok: 
-                        <span class="text-{{ $product->jumlah > 0 ? 'green-500' : 'red-500' }}">
-                            {{ $product->jumlah > 0 ? 'Tersedia' : 'Habis' }}
-                        </span>
-                    </p>
-                    <div>
-                        <span class="px-3 py-1 bg-blue-100 text-black-600 rounded-lg text-sm">
-                            {{ $product->kategori }}
-                        </span>
-                    </div>
-                </div>
+						<!-- Price -->
+						<div class="text-3xl font-bold text-lime-600">
+							Rp {{ number_format((float)$product->harga, 0, ',', '.') }}
+						</div>
 
-                <!-- Tokopedia Button -->
-                <div class="mt-6">
-                    <a href="{{ $product->link }}" target="_blank"
-                       class="block w-full text-center bg-[#3eb640] text-white px-6 py-3 rounded-lg hover:bg-[#37a537] transition duration-300">
-                        BELI SEKARANG
-                    </a>
-                </div>
+						<!-- Stock Status -->
+						<div class="flex items-center space-x-2">
+							<div class="w-2 h-2 rounded-full {{ $product->jumlah > 0 ? 'bg-lime-500' : 'bg-red-500' }}"></div>
+							<span class="text-{{ $product->jumlah > 0 ? 'lime-500' : 'red-500' }} font-medium">
+								{{ $product->jumlah > 0 ? 'Stok Tersedia' : 'Stok Habis' }}
+							</span>
+						</div>
 
-                <!-- Back Button -->
-                <div class="mt-4">
-                    <a href="/" class="block text-center bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-300">
-                        Kembali
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+						<!-- Product Description -->
+						<div class="prose max-w-none text-gray-600">
+							<p>{{ $product->description }}</p>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="space-y-4 pt-6">
+							<a href="{{ $product->link }}" target="_blank"
+							   class="block w-full text-center bg-lime-600 text-white px-6 py-4 rounded-xl hover:bg-lime-700 transition duration-300 transform hover:-translate-y-0.5 font-medium">
+								Beli Sekarang
+							</a>
+
+							<a href="/" 
+							   class="block w-full text-center bg-gray-100 text-gray-700 px-6 py-4 rounded-xl hover:bg-gray-200 transition duration-300 font-medium">
+								Kembali ke Beranda
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </x-layout>
