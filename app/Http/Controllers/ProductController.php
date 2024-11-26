@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -30,6 +31,22 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+
+	public function searchUmkm(Request $request)
+	{
+		$query = $request->input('query');
+		$products = Product::where('kategori', 'UMKM')
+						->where(function($q) use ($query) {
+							$q->where('produk', 'like', "%{$query}%")
+								->orWhere('description', 'like', "%{$query}%");
+						})
+						->paginate(12);
+		
+		return view('UMKM', [
+			'title' => 'UMKM Products',
+			'products' => $products
+		]);
+	}
 
     public function fashion()
     {
@@ -79,7 +96,7 @@ class ProductController extends Controller
             ->where('kategori', 'tas wanita')
             ->paginate(10);
 
-        return view('tas wanita', [
+        return view('taswanita', [
             'title' => 'Tas Wanita',
             'products' => $products
         ]);

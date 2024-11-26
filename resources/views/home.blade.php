@@ -1,101 +1,91 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <div class="container mx-auto my-8"> 
-
-        <!-- Form Pencarian -->
-        <form id="search-form" class="mb-8">
-            <input 
-                type="text" 
-                name="query" 
-                id="search-input" 
-                class="px-4 py-2 text-sm border border-lime-800 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-600" 
-                placeholder="Cari Produk..."
-            />
-        </form>
-
-        <!-- Menampilkan hasil pencarian produk -->
-        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach($product as $products) <!-- Mengubah dari $products ke $product -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden h-[400px] flex flex-col">
-                    <img src="{{ $products->img }}" 
-                         alt="{{ $products->produk }}" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="text-lg font-semibold text-gray-800 line-clamp-2 h-14">{{ $products->produk }}</h3>
-                        <p class="text-gray-600 mt-2">Rp {{ number_format((float)$products->harga, 0, ',', '.') }}</p>
-                        <div class="mt-auto">
-                            <a href="/detail/{{ $products->id }}" 
-                               class="block text-center bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700">
-                                Detail Produk
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+    
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-lime-500 to-lime-700 text-white py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-4">Selamat Datang di Marketplace iDeaThings!</h1>
+            <p class="text-xl">
+                Temukan berbagai macam produk menarik di iDeaThings Marketplace
+            </p>
         </div>
     </div>
 
-    <div style="margin-top: 60px">
-        <nav class="flex justify-center items-center">
-            <ul class="flex space-x-4">
-                <!-- Prev Button -->
-                @if ($product->onFirstPage())
-                    <li class="disabled">
-                        <span class="px-3 py-1 text-gray-500 cursor-not-allowed">&laquo; Prev</span>
-                    </li>
-                @else
-                    <li>
-                        <a href="{{ $product->previousPageUrl() }}" 
-                           class="px-3 py-1 text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out">
-                            &laquo; Prev
-                        </a>
-                    </li>
-                @endif
-    
-                <!-- Page Numbers -->
-                @foreach ($product->getUrlRange(1, $product->lastPage()) as $page => $url)
-                    <li>
-                        <a href="{{ $url }}" 
-                           class="px-3 py-1 rounded-full {{ $page == $product->currentPage() ? 'bg-lime-600 text-white' : 'text-gray-700 hover:bg-lime-100' }} transition duration-200 ease-in-out">
-                            {{ $page }}
-                        </a>
-                    </li>
-                @endforeach
-    
-                <!-- Next Button -->
-                @if ($product->hasMorePages())
-                    <li>
-                        <a href="{{ $product->nextPageUrl() }}" 
-                           class="px-3 py-1 text-gray-700 hover:text-gray-900 transition duration-300 ease-in-out">
-                            Next &raquo;
-                        </a>
-                    </li>
-                @else
-                    <li class="disabled">
-                        <span class="px-3 py-1 text-gray-500 cursor-not-allowed">Next &raquo;</span>
-                    </li>
-                @endif
-            </ul>
-        </nav>
+    <div class="container mx-auto px-4 py-8">
+        <!-- Search Section with Better Styling -->
+        <div class="mb-8 max-w-2xl mx-auto">
+            <form id="search-form" class="relative">
+                <input 
+                    type="text" 
+                    name="query" 
+                    id="search-input"
+                    class="w-full px-4 py-3 pl-12 text-gray-700 bg-white border border-lime-300 rounded-full focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent shadow-sm"
+                    placeholder="Search products..."
+                />
+                <svg class="absolute left-4 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </form>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            @foreach($product as $products)
+                <x-product-card :product="$products" />
+            @endforeach
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12">
+            <nav class="flex justify-center items-center">
+                <ul class="flex space-x-2">
+                    @if ($product->onFirstPage())
+                        <li class="px-4 py-2 text-gray-400 bg-gray-100 rounded-lg cursor-not-allowed">&laquo; Prev</li>
+                    @else
+                        <li>
+                            <a href="{{ $product->previousPageUrl() }}"
+                               class="px-4 py-2 bg-white text-lime-600 rounded-lg hover:bg-lime-50 transition duration-300">
+                                &laquo; Prev
+                            </a>
+                        </li>
+                    @endif
+
+                    @foreach ($product->getUrlRange(1, $product->lastPage()) as $page => $url)
+                        <li>
+                            <a href="{{ $url }}"
+                               class="px-4 py-2 rounded-lg {{ $page == $product->currentPage() ? 'bg-lime-600 text-white' : 'bg-white text-lime-600 hover:bg-lime-50' }} transition duration-300">
+                                {{ $page }}
+                            </a>
+                        </li>
+                    @endforeach
+
+                    @if ($product->hasMorePages())
+                        <li>
+                            <a href="{{ $product->nextPageUrl() }}"
+                               class="px-4 py-2 bg-white text-lime-600 rounded-lg hover:bg-lime-50 transition duration-300">
+                                Next &raquo;
+                            </a>
+                        </li>
+                    @else
+                        <li class="px-4 py-2 text-gray-400 bg-gray-100 rounded-lg cursor-not-allowed">Next &raquo;</li>
+                    @endif
+                </ul>
+            </nav>
+        </div>
     </div>
-    
 </x-layout>
 
-
-<!--jQuery-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     $(document).ready(function () {
         $('#search-input').on('input', function () {
-            var query = $(this).val(); 
+            var query = $(this).val();
 
             $.ajax({
-                url: '{{ route("search") }}', 
+                url: '{{ route("search") }}',
                 method: 'GET',
-                data: {
-                    query: query
-                },
+                data: { query: query },
                 success: function (data) {
                     $('#product-list').html(data);
                 }

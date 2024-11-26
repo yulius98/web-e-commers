@@ -24,3 +24,5 @@ Route::get('/taswanita', [ProductController::class, 'tasWanita'])->name('taswani
 Route::get('/aksesoris', [ProductController::class, 'aksesoris'])->name('aksesoris');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+Route::get('/search/umkm', [SearchController::class, 'searchUmkm'])->name('search.umkm');

@@ -1,17 +1,15 @@
-<div class="bg-white rounded-lg shadow-lg overflow-hidden h-[400px] flex flex-col">
-	<img src="{{ $product->img }}" 
-		 alt="{{ $product->produk }}" 
-		 class="w-full h-48 object-cover">
-	<div class="p-4 flex flex-col flex-grow">
-		<h3 class="text-lg font-semibold text-gray-800 line-clamp-2 h-14">{{ $product->produk }}</h3>
-		<p class="text-gray-600 mt-2">
-			Rp {{ number_format($product->harga, 0, ',', '.') }}
-		</p>
-		<div class="mt-auto">
-			<a href="/detail/{{ $product->id }}" 
-			   class="block text-center bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700">
-				Detail Produk
-			</a>
-		</div>
-	</div>
+<div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+    <div class="relative">
+        <img src="{{ $product->img }}"
+             alt="{{ $product->produk }}"
+             class="w-full h-56 object-cover">
+    </div>
+    <div class="p-6">
+        <h3 class="text-lg font-semibold text-gray-800 line-clamp-2 mb-2">{{ $product->produk }}</h3>
+        <p class="text-lime-600 font-bold text-xl mb-4">Rp {{ number_format((float)$product->harga, 0, ',', '.') }}</p>
+        <a href="/detail/{{ $product->id }}"
+           class="block text-center bg-lime-600 text-white px-6 py-3 rounded-lg hover:bg-lime-700 transition duration-300 ease-in-out transform hover:-translate-y-0.5">
+            View Details
+        </a>
+    </div>
 </div>
