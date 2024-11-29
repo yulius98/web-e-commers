@@ -1,0 +1,4 @@
+deployment:
+tasks:
+- export DEPLOYPATH=/home/idek_3326/public_html/marketplace
+- /bin/cp -r * $DEPLOYPATH
