@@ -4,7 +4,7 @@
             <!-- Logo and text with modern styling -->
             <div class="flex-shrink-0 flex items-center space-x-3 transform transition-transform hover:scale-105">
                 <a href="/" class="flex items-center">
-                    <img class="h-12 w-auto rounded-full shadow-md" src="/img/logo.png" alt="iDeaThings">
+                    <img class="h-12 w-auto rounded-full shadow-md" src="../../img/logo.png" alt="iDeaThings">
                     <div class="ml-3 text-gray-900 font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-lime-600 to-lime-600">
                         iDeaThings
                     </div>
@@ -14,10 +14,11 @@
             <!-- Centered navigation with modern hover effects -->
             <div class="hidden md:flex flex-1 justify-center">
                 <div class="flex items-baseline space-x-6">
-                    <a href="/" class="group relative {{ request()->is('/') ? 'text-lime-600 font-bold' : 'text-gray-600' }} px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-lime-600">
-                        Home
+                    <a href="{{ url('/') }}" class="group relative {{ request()->is('/') ? 'text-lime-600 font-bold' : 'text-gray-600' }} px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-lime-600">
+                        Product
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-lime-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                     </a>
+                    
                     <a href="{{ route('umkm') }}" class="{{ request()->is('umkm') ? 'text-lime-600 font-bold' : 'text-gray-600' }} px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-lime-600">
                         UMKM
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-lime-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -59,7 +60,7 @@
             <a href="/" class="{{ request()->is('/') ? 'bg-blue-50 text-lime-600 font-bold' : 'text-gray-600 hover:bg-blue-50 hover:text-lime-600' }} block rounded-lg px-4 py-3 text-base font-medium transition-all duration-300 transform hover:translate-x-2">
                 Home
             </a>
-            <a href="/UMKM" class="{{ request()->is('/UMKM') ? 'bg-blue-50 text-lime-600 font-bold' : 'text-gray-600 hover:bg-blue-50 hover:text-lime-600' }} block rounded-lg px-4 py-3 text-base font-medium transition-all duration-300 transform hover:translate-x-2">
+             <a href="{{ route('umkm') }}" class="{{ request()->is('umkm') ? 'bg-blue-50 text-lime-600 font-bold' : 'text-gray-600 hover:bg-blue-50 hover:text-lime-600' }} block rounded-lg px-4 py-3 text-base font-medium transition-all duration-300 transform hover:translate-x-2">
                 UMKM
             </a>
             <x-nav-fashion class="{{ request()->is('/Fashion') ? 'bg-blue-50 text-lime-600 font-bold' : 'text-gray-600 hover:bg-blue-50 hover:text-lime-600' }} block rounded-lg px-4 py-3 text-base font-medium transition-all duration-300 transform hover:translate-x-2"></x-nav-fashion>
