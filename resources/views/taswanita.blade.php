@@ -14,7 +14,7 @@
 	<div class="container mx-auto px-4 py-8">
 		<!-- Products Grid -->
 		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-			@foreach($products->where('kategori', 'tas') as $product)
+			@foreach($products->where('kategori', 'tas wanita') as $product)
 				<x-product-card :product="$product" />
 			@endforeach
 		</div>
