@@ -12,7 +12,7 @@
 					Rp {{ number_format($product->harga, 0, ',', '.') }}
 				</p>
                 <div class="mt-auto">
-                    <a href="/detail/{{ $product->id }}" 
+                     <a href="{{ route('product.show', $product->id) }}"
                        class="block text-center bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-700">
                         Detail Produk
                     </a>
