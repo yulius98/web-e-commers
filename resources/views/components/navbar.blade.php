@@ -18,7 +18,7 @@
                         Home
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-lime-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                     </a>
-                    <a href="/UMKM" class="group relative {{ request()->is('UMKM') ? 'text-lime-600 font-bold' : 'text-gray-600' }} px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-lime-600">
+                    <a href="{{ route('umkm') }}" class="{{ request()->is('umkm') ? 'text-lime-600 font-bold' : 'text-gray-600' }} px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-lime-600">
                         UMKM
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-lime-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                     </a>
