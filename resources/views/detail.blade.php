@@ -5,7 +5,7 @@
 		<!-- Breadcrumb -->
 		<div class="container mx-auto px-4 py-4">
 			<nav class="text-gray-500 text-sm">
-				<a href="/" class="hover:text-lime-600">Home</a>
+				<a href="{{ url('/') }}" class="hover:text-lime-600">Produk</a>
 				<span class="mx-2">/</span>
 				<span class="text-gray-800">{{ $product->produk }}</span>
 			</nav>
@@ -62,7 +62,7 @@
 								Beli Sekarang
 							</a>
 
-							<a href="/" 
+							<a href="{{ url('/') }}"
 							   class="block w-full text-center bg-gray-100 text-gray-700 px-6 py-4 rounded-xl hover:bg-gray-200 transition duration-300 font-medium">
 								Kembali ke Beranda
 							</a>
