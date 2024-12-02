@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function allProducts()
     {
         $products = DB::table('products')->paginate(10);
-        return view('home', ['title' => 'Semua Produk', 'product' => $products]);
+        return view('home', ['title' => 'Selamat Datang di Marketplace iDeaThings!', 'product' => $products]);
     }
 
     public function show($id)
@@ -27,7 +27,80 @@ class ProductController extends Controller
             ->paginate(10);
 
         return view('UMKM', [
-            'title' => 'UMKM',
+            'title' => 'Produk Rumah Tangga',
+            'products' => $products
+        ]);
+    }
+
+    public function produkelektronik()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk elektronik')
+            ->paginate(10);
+
+        
+        return view('produkelektronik', [
+            'title' => 'Produk Elektronik',
+            'products' => $products
+        ]);
+    }
+
+    public function produkrumah()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk rumah')
+            ->paginate(10);
+
+        return view('produkrumah', [
+            'title' => 'Produk Perlengkapan Rumah',
+            'products' => $products
+        ]);
+    }
+
+    public function produkpemberisih()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk pemberisih')
+            ->paginate(10);
+
+        return view('produkpemberisih', [
+            'title' => 'Produk Pembersih Rumah',
+            'products' => $products
+        ]);
+    }
+
+    public function produktravelling()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk travelling')
+            ->paginate(10);
+
+        return view('produktravelling', [
+            'title' => 'Produk Travelling',
+            'products' => $products
+        ]);
+    }
+
+    public function produkstationary()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk stationary')
+            ->paginate(10);
+
+        return view('produkstationary', [
+            'title' => 'Produk Stationary',
+            'products' => $products
+        ]);
+    }
+
+    public function produkmemasak()
+    {
+        $products = DB::table('products')
+            ->where('kategori', 'produk memasak')
+            ->paginate(10);
+
+        return view('produkmemasak', [
+            'title' => 'Produk Perlengkapan Memasak',
             'products' => $products
         ]);
     }
@@ -61,7 +134,7 @@ class ProductController extends Controller
             ->paginate(10);
 
         return view('pakaianpria', [
-            'title' => 'Pakaian Pria',
+            'title' => 'Koleksi Pakaian Pria',
             'products' => $products
         ]);
     }
@@ -73,7 +146,7 @@ class ProductController extends Controller
             ->paginate(10);
 
         return view('pakaianwanita', [
-            'title' => 'Pakaian Wanita',
+            'title' => 'Koleksi Pakaian Wanita',
             'products' => $products
         ]);
     }
@@ -85,7 +158,7 @@ class ProductController extends Controller
         ->paginate(10);
 
     return view('taspria', [
-        'title' => 'Tas Pria',
+        'title' => 'Koleksi Tas Pria',
         'products' => $products
     ]);
     }
@@ -97,7 +170,7 @@ class ProductController extends Controller
             ->paginate(10);
 
         return view('taswanita', [
-            'title' => 'Tas Wanita',
+            'title' => 'Koleksi Tas Wanita',
             'products' => $products
         ]);
     }

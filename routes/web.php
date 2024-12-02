@@ -11,6 +11,18 @@ Route::get('/detail/{id}', [ProductController::class, 'show'])->name('product.sh
 
 Route::get('/UMKM', [ProductController::class, 'umkm'])->name('umkm');
 
+Route::get('/produkelektronik', [ProductController::class, 'produkelektronik'])->name('produkelektronik');
+
+Route::get('/produkrumah', [ProductController::class, 'produkrumah'])->name('produkrumah');
+
+Route::get('/produkpemberisih', [ProductController::class, 'produkpemberisih'])->name('produkpemberisih');
+
+Route::get('/produktravelling', [ProductController::class, 'produktravelling'])->name('produktravelling');
+
+Route::get('/produkstationary', [ProductController::class, 'produkstationary'])->name('produkstationary');
+
+Route::get('/produkmemasak', [ProductController::class, 'produkmemasak'])->name('produkmemasak');
+
 Route::get('/fashion', [ProductController::class, 'fashion'])->name('fashion');
 
 Route::get('/pakaianpria', [ProductController::class, 'pakaianPria'])->name('pakaianpria');
